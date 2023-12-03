@@ -254,7 +254,7 @@ def addvalues():
                              amount=amount)
     db.session.add(coffee_instance)
     db.session.commit()
-    return "added"
+    return redirect(url_for("pilot"))
 
 
 @app.route("/add_resource")
@@ -267,7 +267,7 @@ def addresource():
                                 wallet=amount)
     db.session.add(coffee_instance)
     db.session.commit()
-    return "added"
+    return redirect(url_for("pilot"))
 
 
 if __name__ == "__main__":

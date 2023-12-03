@@ -1,16 +1,14 @@
 import os
-import time
-
-from flask import Flask, render_template, redirect, url_for, request, flash, send_from_directory, send_file, session
+from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_login import UserMixin, LoginManager, login_required, current_user, logout_user, login_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coffeemachine.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy()
 db.init_app(app)
-app.config['SECRET_KEY'] = 'nageshkolkar'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -151,7 +149,7 @@ def coins():
         change = 0
         if total_amount_inserted > coffee.amount:
             change = total_amount_inserted - coffee.amount
-            change = round(change,2)
+            change = round(change, 2)
         elif total_amount_inserted < coffee.amount:
             short = coffee.amount - total_amount_inserted
             session["short"] = short
@@ -191,6 +189,7 @@ def Latte():
     else:
         return render_template("restock.html")
 
+
 @app.route("/cappuccino")
 @login_required
 def Cappuccino():
@@ -200,6 +199,7 @@ def Cappuccino():
         return redirect(url_for("coins"))
     else:
         return render_template("restock.html")
+
 
 def update_resources(coffee_name):
     coffee = Coffee.query.filter_by(coffee_name=coffee_name).first()

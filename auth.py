@@ -252,9 +252,9 @@ def addvalues():
     coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water, coffee_require_ml=coffee_powder,
                              amount=amount)
     db.add(coffee_instance)
-    db.commit()
+    db.session.commit()
 
-@app.route("add_resource")
+@app.route("/add_resource")
 def addresource():
     milk = request.args.get('milk')
     water = request.args.get('water')
@@ -263,6 +263,6 @@ def addresource():
     coffee_instance = Resources( milk_stock=milk, water_stock=water, coffee_powder_stock=coffee_powder,
                              wallet=amount)
     db.add(coffee_instance)
-    db.commit()
+    db.session.commit()
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5010)

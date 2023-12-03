@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block title%}CCN Enjoy your coffee{% endblock %}
+{% block content%}
+<center>
+<div class="success">
+<!--<h2>Preparing Your Coffee</h2>-->
+    <img src="{{url_for('static',filename='images/success.png')}}" width="60px">
+    <h2>Payment Successful</h2>
+<h2>Enjoy your {{coffeename}}, {{user}} <br> Have a nice day😊</h2>
+{% if money_change %}
+<p class="change">Here is your change!<br> ${{change}}</p>
+{% endif %}
+   <button class="home" style="width:50%;border:none;"><a href="{{url_for('home')}}">Grab another Coffee</a></button>
+     <button class="home" style="width:50%;border:none;"><a href="{{url_for('logout')}}">Logout</a></button>
+</div>
+</center>
+{% endblock %}

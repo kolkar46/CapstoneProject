@@ -6,15 +6,25 @@
     box-sizing: border-box;
 }
 .pilot{
-margin-top:15%;
+margin-top:3%;
 
 }
+.navbar{
+box-shadow:10px 10px 10px 10px;}
+.coffee-btn{
+padding-top:20px;
+padding-bottom:20px;
+margin-top:8px;
+margin-bottom:8px;}
 h2{
 color:white !important;
 font-family: 'Poppins',sans-serif;}
 .home{
-margin-top:15% !important;
+margin-top:1% !important;
+display:inline-block;
 }
+div{
+display:inline-block;}
 body{
     background-color: #080710 !important;
 }
@@ -49,20 +59,54 @@ body{
     right: -30px;
     bottom: -80px;
 }
+.paymenthead{
+padding-top:20px;}
 form{
-    height: 520px;
+    height: 420px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
     transform: translate(-50%,-50%);
+    margin-top:5%;
+    text-align:left;
+    border-radius:50px;
     top: 50%;
     left: 50%;
-    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(80,7,16,0.6);
+    padding: 20px 35px;
+    margin-bottom:40px;
+}
+.home-form{
+
+    height: 320px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 70%;
+    margin-top:20%;
+    left: 50%;
+    border-radius:50px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
+    padding-bottom:35px;
+    padding-top:50px;
+    margin-bottom:20px;
 }
+.fail{
+margin-top:10%;
+padding-top:30px;
+padding-bottom:30px;
+text-align:center;
+background-color:grey;
+border:none;
+border-radius:20px;
+width:40%;
+}
+
 form *{
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
@@ -79,18 +123,18 @@ form h3{
 
 label{
     display: block;
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 16px;
     font-weight: 500;
 }
 input{
     display: block;
-    height: 50px;
+    height: 30px;
     width: 100%;
     background-color: rgba(255,255,255,0.07);
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 0 10px;
-    margin-top: 8px;
+    margin-top: 20px;
     font-size: 14px;
     font-weight: 300;
 }
@@ -131,7 +175,7 @@ a{
 text-decoration:none !important;
 color:black !important;}
 .register{
-width:20% !important;
+width:90% !important;
 margin-top:10px !important;
 border:none !important;
 border-radius:20px !important;
@@ -146,3 +190,24 @@ border-radius:20px !important;
 .social i{
   margin-right: 4px;
 }
+.success{
+margin-top:5%;
+padding-top:30px;
+padding-bottom:30px;
+text-align:center;
+background-color:grey;
+border:none;
+border-radius:20px;
+width:40%;}
+.change{
+color:white;
+font-family: 'Poppins',sans-serif;
+background-color:black;
+}
+.report{color:white;
+padding:20px;
+margin-top:10%;;}
+th,td{
+padding-top:20px;
+border-bottom:1px solid white;
+padding-right:500px;}

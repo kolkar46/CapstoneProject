@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block title%}CCN Payment{% endblock %}
+{% block content%}
+<center>
+    <div class="fail">
+        <img src="{{url_for('static',filename='images/fail.png')}}" width="60px
+">
+<h1>Payment failed</h1>
+<p>You are $ {{short}} short for your {{coffee}}</p>
+</div><br>
+<div style="width:30%;">
+<button class="register" type="submit"><a href="{{url_for('coins')}}">Retry Payment</a></button></div></center>
+{%endblock%}

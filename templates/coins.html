@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block title%}CCN Payment{% endblock %}
+{% block content%}
+<center><h2 class="paymenthead">Complete your Payment</h2>
+<form action="/coins" method="POST">
+<!--    <label> Enter Quarter:</label>-->
+    <input type="text" name="quarter" required placeholder="Quarters">
+<!--    <label> Enter Dime:</label>-->
+     <input type="text" name="dime" required placeholder="Dimes">
+<!--    <label> Enter Nickel:</label>-->
+     <input type="text" name="nickel" required placeholder="Nickels">
+<!--    <label> Enter Pennies:</label>-->
+     <input type="text" name="penny" required placeholder="Pennies">
+    <button type="submit">Insert</button>
+</form>
+    {% if is_short %}
+    <p style="color:red;">You are ${{short}} short for your coffee</p></center>{% endif %}
+{% endblock %}

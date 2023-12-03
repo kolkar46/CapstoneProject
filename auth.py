@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://coffeemachinedb_nzqr_user:HXatuAYSfbMm0dZiNZxAL6b6ytAKh2E3@dpg-clmd9shfb9qs739brp40-a.oregon-postgres.render.com/coffeemachinedb_nzqr'
 db = SQLAlchemy()
 db.init_app(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')

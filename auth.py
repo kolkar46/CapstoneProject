@@ -4,7 +4,6 @@ from flask_login import UserMixin, LoginManager, login_required, current_user, l
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy()
@@ -243,5 +242,27 @@ def success():
                            money_change=money_change)
 
 
+@app.route("/addcoffee")
+def addvalues():
+    coffeename = request.args.get('name')
+    milk = request.args.get('milk')
+    water = request.args.get('water')
+    coffee_powder = request.args.get('coffee')
+    amount = request.args.get('amount')
+    coffee_instance = Coffee(coffeename=coffeename, milk=milk, water=water, coffee_powder=coffee_powder,
+                             amount=amount)
+    db.add(coffee_instance)
+    db.commit()
+
+@app.route("add_resource")
+def addresource():
+    milk = request.args.get('milk')
+    water = request.args.get('water')
+    coffee_powder = request.args.get('coffee')
+    amount = request.args.get('amount')
+    coffee_instance = Coffee( milk=milk, water=water, coffee_powder=coffee_powder,
+                             amount=amount)
+    db.add(coffee_instance)
+    db.commit()
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',debug=True, port=5010)
+    app.run(host='0.0.0.0', debug=True, port=5010)

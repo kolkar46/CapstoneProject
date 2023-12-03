@@ -251,6 +251,7 @@ def addvalues():
     amount = request.args.get('amount')
     coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
                              coffee_require_ml=coffee_powder,
+
                              amount=amount)
     db.session.add(coffee_instance)
     db.session.commit()

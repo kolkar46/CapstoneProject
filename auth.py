@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://coffeemachinedb_nzqr_user:HXatuAYSfbMm0dZiNZxAL6b6ytAKh2E3@dpg-clmd9shfb9qs739brp40-a.oregon-postgres.render.com/coffeemachinedb_nzqr'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy()
 db.init_app(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -144,7 +144,7 @@ def coins():
         dime = request.form.get('dime')
         nickel = request.form.get('nickel')
         penny = request.form.get('penny')
-        total_amount_inserted = (int(quarter) * 0.25) + (int(dime) * 0.01) + (int(nickel) * 0.1) + (int(penny) * 0.05)
+        total_amount_inserted = (int(quarter) * 0.25) + (int(dime) * 0.10) + (int(nickel) * 0.05) + (int(penny) * 0.01)
         coffee = Coffee.query.filter_by(coffee_name=coffee_name).first()
         change = 0
         if total_amount_inserted > coffee.amount:
@@ -242,33 +242,33 @@ def success():
                            money_change=money_change)
 
 
-@app.route("/addcoffee")
-def addvalues():
-    coffeename = request.args.get('name')
-    milk = request.args.get('milk')
-    water = request.args.get('water')
-    coffee_powder = request.args.get('coffee')
-    amount = request.args.get('amount')
-    coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
-                             coffee_require_ml=coffee_powder,
-
-                             amount=amount)
-    db.session.add(coffee_instance)
-    db.session.commit()
-    return redirect(url_for("pilot"))
-
-
-@app.route("/add_resource")
-def addresource():
-    milk = request.args.get('milk')
-    water = request.args.get('water')
-    coffee_powder = request.args.get('coffee')
-    amount = request.args.get('amount')
-    coffee_instance = Resources(milk_stock=milk, water_stock=water, coffee_powder_stock=coffee_powder,
-                                wallet=amount)
-    db.session.add(coffee_instance)
-    db.session.commit()
-    return redirect(url_for("pilot"))
+# @app.route("/addcoffee")
+# def addvalues():
+#     coffeename = request.args.get('name')
+#     milk = request.args.get('milk')
+#     water = request.args.get('water')
+#     coffee_powder = request.args.get('coffee')
+#     amount = request.args.get('amount')
+#     coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
+#                              coffee_require_ml=coffee_powder,
+#
+#                              amount=amount)
+#     db.session.add(coffee_instance)
+#     db.session.commit()
+#     return redirect(url_for("pilot"))
+#
+#
+# @app.route("/add_resource")
+# def addresource():
+#     milk = request.args.get('milk')
+#     water = request.args.get('water')
+#     coffee_powder = request.args.get('coffee')
+#     amount = request.args.get('amount')
+#     coffee_instance = Resources(milk_stock=milk, water_stock=water, coffee_powder_stock=coffee_powder,
+#                                 wallet=amount)
+#     db.session.add(coffee_instance)
+#     db.session.commit()
+#     return redirect(url_for("pilot"))
 
 
 if __name__ == "__main__":

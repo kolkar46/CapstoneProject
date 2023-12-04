@@ -242,33 +242,33 @@ def success():
     return render_template('success.html', coffeename=coffee_name, change=change, user=current_user.username,
                            money_change=money_change)
 
-#
-# @app.route("/addcoffee")
-# def addvalues():
-#     coffeename = request.args.get('name')
-#     milk = request.args.get('milk')
-#     water = request.args.get('water')
-#     coffee_powder = request.args.get('coffee')
-#     amount = request.args.get('amount')
-#     coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
-#                              coffee_require_ml=coffee_powder,
-#                              amount=amount)
-#     db.session.add(coffee_instance)
-#     db.session.commit()
-#     return "added"
-#
-#
-# @app.route("/add_resource")
-# def addresource():
-#     milk = request.args.get('milk')
-#     water = request.args.get('water')
-#     coffee_powder = request.args.get('coffee')
-#     amount = request.args.get('amount')
-#     coffee_instance = Resources(milk_stock=milk, water_stock=water, coffee_powder_stock=coffee_powder,
-#                                 wallet=amount)
-#     db.session.add(coffee_instance)
-#     db.session.commit()
-#     return redirect(url_for("added"))
+
+@app.route("/addcoffee")
+def addvalues():
+    coffeename = request.args.get('name')
+    milk = request.args.get('milk')
+    water = request.args.get('water')
+    coffee_powder = request.args.get('coffee')
+    amount = request.args.get('amount')
+    coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
+                             coffee_require_ml=coffee_powder,
+                             amount=amount)
+    db.session.add(coffee_instance)
+    db.session.commit()
+    return "added"
+
+
+@app.route("/add_resource")
+def addresource():
+    milk = request.args.get('milk')
+    water = request.args.get('water')
+    coffee_powder = request.args.get('coffee')
+    amount = request.args.get('amount')
+    coffee_instance = Resources(milk_stock=milk, water_stock=water, coffee_powder_stock=coffee_powder,
+                                wallet=amount)
+    db.session.add(coffee_instance)
+    db.session.commit()
+    return redirect(url_for("added"))
 
 
 if __name__ == "__main__":

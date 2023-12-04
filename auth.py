@@ -148,6 +148,7 @@ def coins():
         total_amount_inserted = (int(quarter) * 0.25) + (int(dime) * 0.01) + (int(nickel) * 0.1) + (int(penny) * 0.05)
         coffee = Coffee.query.filter_by(coffee_name=coffee_name).first()
         change = 0
+        print(coffee_name)
         if total_amount_inserted > coffee.amount:
             change = total_amount_inserted - coffee.amount
             change = round(change, 2)
@@ -157,7 +158,7 @@ def coins():
             return redirect(url_for("fail"))
         if update_resources(coffee_name):
             session['change'] = change
-            session[coffee_name] = coffee_name
+            session['coffee_name'] = coffee_name
             return redirect(url_for("success"))
     return render_template("coins.html")
 

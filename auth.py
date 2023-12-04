@@ -5,14 +5,13 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coffeemachine.db'
 db = SQLAlchemy()
 db.init_app(app)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = 'nagesh_kolkar'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-
 
 
 @login_manager.user_loader
@@ -145,7 +144,7 @@ def coins():
         dime = request.form.get('dime')
         nickel = request.form.get('nickel')
         penny = request.form.get('penny')
-        total_amount_inserted = (int(quarter) * 0.25) + (int(dime) * 0.10) + (int(nickel) * 0.05) + (int(penny) * 0.01)
+        total_amount_inserted = (int(quarter) * 0.25) + (int(dime) * 0.01) + (int(nickel) * 0.1) + (int(penny) * 0.05)
         coffee = Coffee.query.filter_by(coffee_name=coffee_name).first()
         change = 0
         if total_amount_inserted > coffee.amount:
@@ -214,7 +213,7 @@ def update_resources(coffee_name):
             db.session.commit()
             return True
         else:
-            return False
+            return "Restock required"
 
 
 @app.route("/pass")
@@ -242,7 +241,7 @@ def success():
     return render_template('success.html', coffeename=coffee_name, change=change, user=current_user.username,
                            money_change=money_change)
 
-
+#
 # @app.route("/addcoffee")
 # def addvalues():
 #     coffeename = request.args.get('name')
@@ -252,11 +251,10 @@ def success():
 #     amount = request.args.get('amount')
 #     coffee_instance = Coffee(coffee_name=coffeename, milk_required_ml=milk, water_required_ml=water,
 #                              coffee_require_ml=coffee_powder,
-#
 #                              amount=amount)
 #     db.session.add(coffee_instance)
 #     db.session.commit()
-#     return redirect(url_for("pilot"))
+#     return "added"
 #
 #
 # @app.route("/add_resource")
@@ -269,7 +267,7 @@ def success():
 #                                 wallet=amount)
 #     db.session.add(coffee_instance)
 #     db.session.commit()
-#     return redirect(url_for("pilot"))
+#     return redirect(url_for("added"))
 
 
 if __name__ == "__main__":

@@ -214,8 +214,7 @@ def update_resources(coffee_name):
             resources.wallet += coffee.amount
             db.session.commit()
             return True
-        else:
-            return "Restock required"
+
 
 
 @app.route("/pass")

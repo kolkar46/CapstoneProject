@@ -214,7 +214,7 @@ def update_resources(coffee_name):
             db.session.commit()
             return True
         else:
-            return "Restock required"
+            return False
 
 
 @app.route("/pass")
